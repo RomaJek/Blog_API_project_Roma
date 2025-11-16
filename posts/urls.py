@@ -1,11 +1,14 @@
 from django.urls import path
-from .views import PostListView, PostDetailView, CategoryListView, CategoryDetailView, TagListView, TagDetailView
+from .views import (PostViewSet, CategoryViewSet, TagViewSet, CommentViewSet, UserViewSet)
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    path('posts/', PostListView.as_view(), name='post-list'),
-    path('posts/<int:post_id>/', PostDetailView.as_view(), name='post-detail'),
-    path('categories/', CategoryListView.as_view(), name='category-list'),
-    path('categories/<int:category_id>/', CategoryDetailView.as_view(), name='category-detail'),
-    path('tags/', TagListView.as_view(), name='tag-list'),
-    path('tags/<int:tag_id>/', TagDetailView.as_view(), name='tag-detail'),
-]
+
+# SimpleRouter objectin jaratamiz
+router = DefaultRouter()
+
+router.register(r'users', UserViewSet, basename='user')
+router.register(r'posts', PostViewSet, basename='post')
+router.register(r'categories', CategoryViewSet, basename='category')
+router.register(r'tags', TagViewSet, basename='tag')
+router.register(r'comments', CommentViewSet, basename='comment')
+urlpatterns = router.urls
