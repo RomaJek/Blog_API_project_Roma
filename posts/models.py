@@ -1,8 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.core.validators import RegexValidator
 
 
 # Create your models here.
+
+
+# 1. Jana User model (AbstractUser)
+# class CustomUser(AbstractUser):
+#     # Qosimsha magluwmat kerek bolsa usi jerge qosamiz
+#     phone_regex = RegexValidator(
+#         regex=r'^\+?\d{9,15}$'
+#         message="Telefon nomer '+998991234567' formatinda boliwi kerek."
+#     )
+#     phone_number = models.CharField(
+#         validators=[phone_regex],   # Tekseriwshini qosamiz
+#         max_length=13,
+#         blank=True,
+#         null=True
+#     )
+
+
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -13,6 +32,9 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['-created_at']
     
     
 class Category(models.Model):

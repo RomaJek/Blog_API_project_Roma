@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import (PostViewSet, CategoryViewSet, TagViewSet, CommentViewSet, UserViewSet)
+from .views import PostViewSet, CategoryViewSet, TagViewSet, CommentViewSet, UserViewSet, dashboard_view
 from rest_framework.routers import DefaultRouter
 
 
@@ -12,3 +12,10 @@ router.register(r'categories', CategoryViewSet, basename='category')
 router.register(r'tags', TagViewSet, basename='tag')
 router.register(r'comments', CommentViewSet, basename='comment')
 urlpatterns = router.urls
+
+
+
+
+urlpatterns += [
+    path('dashboard/', dashboard_view, name='dashboard'),
+]
