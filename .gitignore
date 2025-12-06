@@ -1,6 +1,6 @@
 .venv_blog_api_project/
 .venv_blog_api_project_linux/
-.env/
+.env
 __pycache__/
 .pytest_cache/
 
